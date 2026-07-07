@@ -23,5 +23,10 @@ target_link_libraries(netsentry_lib PUBLIC ${PCAP_LIB})
 add_executable(netsentry src/main.cpp)
 target_link_libraries(netsentry PRIVATE netsentry_lib ${PCAP_LIB})
 
+# Offline demo: replays synthetic traffic through the real detection
+# pipeline without needing root or a live network interface.
+add_executable(netsentry_demo tools/demo.cpp)
+target_link_libraries(netsentry_demo PRIVATE netsentry_lib ${PCAP_LIB})
+
 enable_testing()
 add_subdirectory(tests)
